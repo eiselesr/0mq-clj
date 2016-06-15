@@ -16,11 +16,3 @@
           (zmq/send-str socket request)
           (zmq/receive socket)
           (println "Received world " i))))))
-
-(defn myp
-  [args]
-  (println args)
-  (identity args))
-
-;trying to print out the version of zeromq... how would you figure this out?
-;(zmq_version zeromq.zmq)
