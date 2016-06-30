@@ -27,9 +27,14 @@
     (hwclient/-main)))
 
 (require 'wuserver)
-(deftask run-client []
+(deftask run-wuserver []
   (with-pass-thru _
-    (wuserver/main)))
+    (wuserver/-main)))
+
+(require 'wuclient)
+(deftask run-wuclient []
+  (with-pass-thru _
+    (wuclient/-main)))
 
 (deftask dev ; I don't really understand this task
 	"Profile setup for development.
