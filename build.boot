@@ -1,11 +1,15 @@
 (set-env!
     :resource-paths #{"src/main/clj"}
     :source-paths #{"src/main/clj"}
+    :repositories #(conj % '["sonatype"
+                              {:url "https://oss.sonatype.org/content/repositories/snapshots"
+                               :update :always}])
+    ;:repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/repositories/snapshots"}
     :dependencies
       '[[me.raynes/conch "0.8.0"]
         [org.clojure/clojure "1.8.0"]
         [org.zeromq/jeromq "0.3.5"]
-        [org.zeromq/cljzmq "0.1.4"
+        [org.zeromq/cljzmq "0.1.5-SNAPSHOT"
                :exclusions [org.zeromq/jzmq]]
         [proto-repl "0.1.2"]
         [proto-repl-charts "0.2.0"]]
@@ -26,6 +30,11 @@
   (with-pass-thru _
     (hwclient/-main)))
 
+(require 'zmqVersion)
+(deftask get-zmqVersion []
+  (with-pass-thru _
+    (zmqVersion/-main)))
+
 (require 'wuserver)
 (deftask run-wuserver []
   (with-pass-thru _
@@ -37,16 +46,15 @@
     (wuclient/-main)))
 
 (deftask dev ; I don't really understand this task
-	"Profile setup for development.
+  "Profile setup for development.
 	Starting the repl with the dev profile...
 	boot dev repl "
-	[]
-	(set-env!
-		:source-paths #(into % ["dev"])
-		:dependencies #(conj % '[org.clojure/tools.namespace "0.2.11"]))
+  []
+  (set-env!
+    :source-paths #(into % ["dev"])
+    :dependencies #(conj % '[org.clojure/tools.namespace "0.2.11"])))
   ;; Makes clojure.tools.namespace.repl work per https://github.com/boot-clj/boot/wiki/Repl-reloading
   ;(require 'clojure.tools.namespace.repl)
   ;(eval '(apply clojure.tools.namespace.repl/set-refresh-dirs
   ;              (get-env :directories)))
-	;identity;Why is this identity line here?
-  )
+  ;identity;Why is this identity line here?
