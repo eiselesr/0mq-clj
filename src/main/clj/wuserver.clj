@@ -14,3 +14,4 @@
               relhumidity (+ (rand-int 50) 10)]
           (zmq/send-str publisher
             (format "%05d %d %d" zipcode temperature relhumidity)))))))
+          ;(println "%05d %d %d" zipcode temperature relhumidity))))))
