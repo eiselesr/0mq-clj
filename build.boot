@@ -2,8 +2,8 @@
     :resource-paths #{"src/main/clj"}
     :source-paths #{"src/main/clj"}
     :repositories #(conj % '["sonatype"
-                              {:url "https://oss.sonatype.org/content/repositories/snapshots"
-                               :update :always}])
+                              {:url "https://oss.sonatype.org/content/repositories/snapshots"}])
+                               ;:update :always}])
     ;:repositories {"sonatype-oss-public" "https://oss.sonatype.org/content/repositories/snapshots"}
     :dependencies
       '[[me.raynes/conch "0.8.0"]
@@ -40,10 +40,15 @@
   (with-pass-thru _
     (wuserver/-main)))
 
+;(require 'wuclient)
+;(deftask run-wuclient [z zip VALUE int "the zip code"]
+;  (with-pass-thru _ (eval zip)
+;    (wuclient/-main [zip])))
+
 (require 'wuclient)
 (deftask run-wuclient []
-  (with-pass-thru _
-    (wuclient/-main)))
+  (with-pass-thru _ 
+    (wuclient/-main )))
 
 (deftask dev ; I don't really understand this task
   "Profile setup for development.
