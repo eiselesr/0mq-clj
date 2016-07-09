@@ -21,6 +21,3 @@
   [args]
   (println args)
   (identity args))
-
-;trying to print out the version of zeromq... how would you figure this out?
-;(zmq_version zeromq.zmq)

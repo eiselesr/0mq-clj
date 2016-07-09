@@ -40,15 +40,15 @@
   (with-pass-thru _
     (wuserver/-main)))
 
-;(require 'wuclient)
-;(deftask run-wuclient [z zip VALUE int "the zip code"]
-;  (with-pass-thru _ (eval zip)
-;    (wuclient/-main [zip])))
-
 (require 'wuclient)
-(deftask run-wuclient []
-  (with-pass-thru _ 
-    (wuclient/-main )))
+(deftask run-wuclient [z zipcode VALUE int "the zip code"]
+  (with-pass-thru _
+    (wuclient/-main zipcode)))
+
+;(require 'wuclient)
+;(deftask run-wuclient []
+;  (with-pass-thru _
+;    (wuclient/-main )))
 
 (deftask dev ; I don't really understand this task
   "Profile setup for development.

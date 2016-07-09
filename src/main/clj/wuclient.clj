@@ -11,9 +11,10 @@
 
 
 (defn -main [& args]
+  (println "Collecting updates from weather server...")
+  (println (str (first args)))
   (time
-    ;(println "Collecting updates from weather server...")
-    (let [filter (or (first args) "10001")
+    (let [filter (or (str (first args)) "10001")
           context (zmq/zcontext)]
       (let [subscriber (doto
                         (zmq/socket context :sub)
