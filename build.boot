@@ -45,10 +45,30 @@
   (with-pass-thru _
     (wuclient/-main zipcode)))
 
-;(require 'wuclient)
-;(deftask run-wuclient []
-;  (with-pass-thru _
-;    (wuclient/-main )))
+(require 'taskvent)
+(deftask run-taskvent []
+  (with-pass-thru _
+    (taskvent/-main)))
+
+(require 'taskwork)
+(deftask run-taskwork []
+  (with-pass-thru _
+    (taskwork/-main)))
+
+(require 'tasksink)
+(deftask run-tasksink []
+  (with-pass-thru _
+    (tasksink/-main)))
+
+(require 'msreader)
+(deftask run-msreader []
+  (with-pass-thru _
+    (msreader/-main)))
+
+(require 'mspoller)
+(deftask run-mspoller []
+  (with-pass-thru _
+    (mspoller/-main)))
 
 (deftask dev ; I don't really understand this task
   "Profile setup for development.
