@@ -41,3 +41,7 @@
   (macroexpand-1 '(doto "hi" .toUpperCase)))
 
 (seq {:key 4 :key2 8})
+
+
+(let [[g h] [1 2 3]]
+     (/ g h) g h)

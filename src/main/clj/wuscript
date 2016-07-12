@@ -1,0 +1,6 @@
+boot run-wuserver &
+boot run-wuclient -z 12345 &
+boot run-wuclient -z 23456 &
+boot run-wuclient -z 34567 &
+boot run-wuclient -z 45678 &
+boot run-wuclient -z 56789 &

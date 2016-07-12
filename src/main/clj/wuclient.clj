@@ -12,9 +12,9 @@
 
 (defn -main [& args]
   (println "Collecting updates from weather server...")
-  (println (str (first args)))
+  (println (type (first args)))
   (time
-    (let [filter (or (str (first args)) "10001")
+    (let [filter (or (first args) "10001")
           context (zmq/zcontext)]
       (let [subscriber (doto
                         (zmq/socket context :sub)
@@ -33,8 +33,8 @@
                         (partial message->temperature subscriber))
                 avg (int (/ (apply + temps) (count temps)))]
             (apply println temps)
-            (printf "Average temperature for zipcode is '%s' was %d\n"
-                      filter avg))
+            (printf "Average temperature for zipcode '%s' was %d\n"
+                      (str filter) avg))
          (finally
           (.destroySocket context subscriber)
           (.destroy context)))))))
