@@ -15,10 +15,16 @@
         (while (zmq/receive receiver zmq/dont-wait)
           (println "process task"))
         ;(let [wu-message (zmq/receive subscriber zmq/don)])
-        (while (let [wu-message (zmq/receive subscriber zmq/dont-wait)]
+        #_(while (let [wu-message (zmq/receive subscriber zmq/dont-wait)]
                   (if wu-message
                     (println "process weather update" wu-message))
                   wu-message))
+        (loop [wu-message (zmq/receive subscriber zmq/dont-wait)]
+          (if wu-message
+            (do
+              (println "process weather update" wu-message)
+              (recur (zmq/receive subscriber zmq/dont-wait)))
+            nil))
         (Thread/sleep 1)))))
 
 ;  (let [string (zmq/receive-str receiver)]
