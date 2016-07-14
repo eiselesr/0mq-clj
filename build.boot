@@ -70,6 +70,26 @@
   (with-pass-thru _
     (mspoller/-main)))
 
+(require 'rrclient)
+(deftask run-rrclient []
+  (with-pass-thru _
+    (rrclient/-main)))
+
+(require 'rrbroker)
+(deftask run-rrbroker []
+  (with-pass-thru _
+    (rrbroker/-main)))
+
+(require 'rrworker)
+(deftask run-rrworker []
+  (with-pass-thru _
+    (rrworker/-main)))
+
+(require 'msgqueue)
+(deftask run-msgqueue []
+  (with-pass-thru _
+    (msgqueue/-main)))
+
 (deftask dev ; I don't really understand this task
   "Profile setup for development.
 	Starting the repl with the dev profile...
